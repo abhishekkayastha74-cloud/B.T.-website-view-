@@ -4149,11 +4149,6 @@ document.addEventListener("keydown", function (event) {
     return false;
   }
 
-});
-
-
-/* Disable right-click context menu */
-
 document.addEventListener("contextmenu", function (event) {
   event.preventDefault();
 });
