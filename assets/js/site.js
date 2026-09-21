@@ -195,31 +195,99 @@ const practiceAreas = [
     }
   },
 
-  {
-    slug: "banking-finance",
-    en: {
-      title: "Banking, Finance & Recovery",
-      short: "Loan documents, mortgage, recovery, SARFAESI, arbitration and NI Act matters.",
-      intro: "Legal work may be undertaken for borrowers, lenders or institutions subject to professional obligations and conflict checks, including title investigation, mortgage creation or vetting, loan and security documentation, recovery proceedings, SARFAESI, arbitration and Negotiable Instruments Act matters.",
-      points: [
-        ["Loan Documentation", "Review or drafting of loan and security documents as engaged."],
-        ["Mortgage", "Mortgage-related documentation and title review."],
-        ["Recovery & SARFAESI", "Recovery and SARFAESI-related proceedings where applicable."],
-        ["NI Act & Arbitration", "Negotiable Instruments Act and arbitration matters subject to jurisdiction."]
+ {
+  slug: "banking-finance",
+
+  en: {
+    title: "Banking, Finance & Recovery",
+
+    short:
+      "Loan and security documentation, mortgage, cheque dishonour, SARFAESI, recovery suits, arbitration, execution and settlement advisory.",
+
+    intro:
+      "Banking, finance and recovery work may include loan and security documentation, mortgage documentation and enforcement, cheque dishonour proceedings under Section 138 of the Negotiable Instruments Act, ECS/NACH mandate dishonour proceedings, loan recall and demand notices, SARFAESI proceedings under Sections 13(2), 13(4) and 14, applications before the District Magistrate under Section 14 of the SARFAESI Act, Summary Suits under Order XXXVII CPC, commercial recovery suits, civil money-recovery suits, arbitration and execution proceedings, and loan settlement and recovery advisory. Acceptance of any matter remains subject to professional obligations, conflict checks, jurisdiction, document review and formal engagement.",
+
+    points: [
+      [
+        "Loan & Security Documentation",
+        "Preparation and review of loan documents, security documents and related finance documentation."
+      ],
+      [
+        "Mortgage Documentation & Enforcement",
+        "Mortgage documentation, review and enforcement-related legal work as applicable."
+      ],
+      [
+        "Cheque & ECS/NACH Dishonour",
+        "Cheque dishonour proceedings under Section 138 of the Negotiable Instruments Act and ECS/NACH mandate dishonour proceedings."
+      ],
+      [
+        "Loan Recall & Demand Notices",
+        "Loan recall notices, demand notices and related recovery documentation."
+      ],
+      [
+        "SARFAESI Proceedings",
+        "Proceedings under Sections 13(2), 13(4) and 14 of the SARFAESI Act, including applications before the District Magistrate under Section 14."
+      ],
+      [
+        "Summary & Recovery Suits",
+        "Summary Suits under Order XXXVII CPC, commercial recovery suits and civil money-recovery suits."
+      ],
+      [
+        "Arbitration & Execution",
+        "Arbitration proceedings and execution proceedings, subject to jurisdiction and the applicable record."
+      ],
+      [
+        "Settlement & Recovery Advisory",
+        "Loan settlement documentation and recovery advisory based on the scope of engagement."
       ]
-    },
-    gu: {
-      title: "બેંકિંગ, ફાઇનાન્સ અને વસૂલાત",
-      short: "લોન દસ્તાવેજો, મોર્ગેજ, વસૂલાત, SARFAESI, આર્બિટ્રેશન અને NI Act બાબતો.",
-      intro: "વ્યાવસાયિક ફરજો અને હિતસંઘર્ષની તપાસને આધીન રહી ઉધારકર્તા, ધિરાણકર્તા અથવા સંસ્થા માટે ટાઇટલ તપાસ, મોર્ગેજ, લોન અને સિક્યુરિટી દસ્તાવેજો, વસૂલાત, SARFAESI, આર્બિટ્રેશન અને NI Act સંબંધિત કામગીરી હાથ ધરવામાં આવી શકે છે.",
-      points: [
-        ["લોન દસ્તાવેજો", "લોન અને સિક્યુરિટી દસ્તાવેજોની સમીક્ષા અથવા ડ્રાફ્ટિંગ."],
-        ["મોર્ગેજ", "મોર્ગેજ દસ્તાવેજો અને સંબંધિત ટાઇટલ તપાસ."],
-        ["વસૂલાત અને SARFAESI", "લાગુ પડે ત્યાં વસૂલાત અને SARFAESI કાર્યવાહી."],
-        ["NI Act અને આર્બિટ્રેશન", "અધિકારક્ષેત્રને આધીન NI Act અને આર્બિટ્રેશન બાબતો."]
-      ]
-    }
+    ]
   },
+
+  gu: {
+    title: "બેંકિંગ, ફાઇનાન્સ અને વસૂલાત",
+
+    short:
+      "લોન અને સિક્યુરિટી દસ્તાવેજો, મોર્ગેજ, ચેક ડિસઓનર, SARFAESI, વસૂલાતના દાવા, આર્બિટ્રેશન, અમલવારી અને સેટલમેન્ટ સલાહ.",
+
+    intro:
+      "બેંકિંગ, ફાઇનાન્સ અને વસૂલાત સંબંધિત કામગીરીમાં લોન અને સિક્યુરિટી દસ્તાવેજો, મોર્ગેજ દસ્તાવેજીકરણ અને અમલ, Negotiable Instruments Act ની કલમ 138 હેઠળ ચેક ડિસઓનર કાર્યવાહી, ECS/NACH mandate dishonour કાર્યવાહી, લોન recall અને demand notice, SARFAESI Act ની કલમ 13(2), 13(4) અને 14 હેઠળની કાર્યવાહી, કલમ 14 હેઠળ District Magistrate સમક્ષ અરજી, Order XXXVII CPC હેઠળ Summary Suit, commercial recovery suit, civil money-recovery suit, arbitration, execution proceeding તથા loan settlement અને recovery advisory નો સમાવેશ થઈ શકે છે.",
+
+    points: [
+      [
+        "લોન અને સિક્યુરિટી દસ્તાવેજો",
+        "લોન દસ્તાવેજો, સિક્યુરિટી દસ્તાવેજો અને સંબંધિત ફાઇનાન્સ દસ્તાવેજોની તૈયારી અને સમીક્ષા."
+      ],
+      [
+        "મોર્ગેજ અને અમલ",
+        "મોર્ગેજ દસ્તાવેજીકરણ, તેની સમીક્ષા અને લાગુ કાયદા મુજબ અમલ સંબંધિત કામગીરી."
+      ],
+      [
+        "ચેક અને ECS/NACH ડિસઓનર",
+        "Negotiable Instruments Act ની કલમ 138 હેઠળ ચેક ડિસઓનર તથા ECS/NACH mandate dishonour સંબંધિત કાર્યવાહી."
+      ],
+      [
+        "Loan Recall અને Demand Notice",
+        "લોન recall notice, demand notice અને વસૂલાત સંબંધિત દસ્તાવેજીકરણ."
+      ],
+      [
+        "SARFAESI કાર્યવાહી",
+        "SARFAESI Act ની કલમ 13(2), 13(4) અને 14 હેઠળની કાર્યવાહી તથા કલમ 14 હેઠળ District Magistrate સમક્ષ અરજી."
+      ],
+      [
+        "Summary અને Recovery Suits",
+        "Order XXXVII CPC હેઠળ Summary Suit, commercial recovery suit અને civil money-recovery suit."
+      ],
+      [
+        "Arbitration અને Execution",
+        "અધિકારક્ષેત્ર અને લાગુ રેકોર્ડને આધીન arbitration અને execution proceedings."
+      ],
+      [
+        "Settlement અને Recovery Advisory",
+        "કામના વ્યાપ મુજબ loan settlement documentation અને recovery advisory."
+      ]
+    ]
+  }
+},
 
   {
     slug: "insurance-mact",
