@@ -1767,23 +1767,52 @@ function renderPrivacy() {
 function renderCTA() {
   return `
     <section class="cta">
+
       <div class="container cta-inner">
 
         <div>
-          <div class="eyebrow" style="color:white;opacity:.75">
-            ${isGu ? "મુલાકાત અને પૂછપરછ" : "Appointments & Enquiries"}
+
+          <div
+            class="eyebrow"
+            style="color:white;opacity:.78"
+          >
+            ${isGu
+              ? "મુલાકાત અને પૂછપરછ"
+              : "Appointments & Enquiries"}
           </div>
 
           <h2>
-            ${isGu ? "ઓફિસનો સંપર્ક કરો" : "Contact the office"}
+            ${isGu
+              ? "ઓફિસનો સંપર્ક કરો"
+              : "Contact the Office"}
           </h2>
+
         </div>
 
-        <a class="btn btn-light" href="${urlForPage("contact")}">
-          ${isGu ? "સંપર્ક વિગતો" : "Contact Details"} →
-        </a>
+        <div class="btns" style="margin-top:0">
+
+          <a
+            class="btn btn-light"
+            href="${urlForPage("contact")}"
+          >
+            ${isGu
+              ? "મુલાકાત માટે વિનંતી કરો"
+              : "Request an Appointment"}
+          </a>
+
+          <a
+            class="btn btn-outline"
+            href="${urlForPage("contact")}"
+          >
+            ${isGu
+              ? "ઓફિસનો સંપર્ક કરો"
+              : "Contact the Office"}
+          </a>
+
+        </div>
 
       </div>
+
     </section>
   `;
 }
