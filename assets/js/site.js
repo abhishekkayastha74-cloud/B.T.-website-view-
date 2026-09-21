@@ -143,32 +143,115 @@ const practiceAreas = [
     }
   },
 
-  {
-    slug: "revenue-land",
-    en: {
-      title: "Revenue & Land Matters",
-      short: "Mutation, RTS, agricultural land, tenure, tenancy, NA permission and revenue proceedings.",
-      intro: "Proceedings concerning mutation entries, RTS disputes, certification or cancellation of entries, agricultural land, tenure conditions, tenancy, non-agricultural permission and other matters under applicable Gujarat revenue and land laws may be undertaken.",
-      points: [
-        ["Mutation & RTS", "Mutation entries, certification and RTS-related proceedings."],
-        ["Agricultural Land", "Agricultural land and tenure-related matters."],
-        ["Tenancy", "Tenancy proceedings before the appropriate authority or tribunal."],
-        ["Revenue Appeals", "Appeals or revisions before competent revenue authorities."]
+{
+  slug: "revenue-land",
+
+  en: {
+    title: "Revenue, Land & Tenancy",
+
+    short:
+      "Revenue records, mutation, RTS, agricultural land, tenure, Ganot/Tenancy, NA permission and proceedings before revenue authorities.",
+
+    intro:
+      "Revenue, land and tenancy work may include revenue record and mutation proceedings, RTS appeals and revisions, agricultural land and tenure matters, Ganot/Tenancy proceedings, NA permission and land-use matters, proceedings before the Mamlatdar and Agricultural Lands Tribunal, Prant Officer or Deputy Collector, District Collector, Additional Secretary (Revenue), Government of Gujarat, and Gujarat Revenue Tribunal (GRT) in Ganot/Tenancy matters.",
+
+    points: [
+      [
+        "Revenue Record & Mutation",
+        "Revenue record and mutation proceedings, including certification or challenge of relevant entries."
+      ],
+      [
+        "RTS Appeals & Revisions",
+        "RTS appeals and revisions before the competent revenue authority."
+      ],
+      [
+        "Agricultural Land & Tenure",
+        "Agricultural land, tenure conditions and related revenue-law matters."
+      ],
+      [
+        "Ganot / Tenancy",
+        "Ganot and tenancy proceedings under the applicable Gujarat land and tenancy framework."
+      ],
+      [
+        "NA Permission & Land Use",
+        "Non-agricultural permission and land-use related proceedings."
+      ],
+      [
+        "Mamlatdar & ALT",
+        "Proceedings before the Mamlatdar and Agricultural Lands Tribunal."
+      ],
+      [
+        "Prant Officer / Deputy Collector",
+        "Proceedings before the Prant Officer or Deputy Collector."
+      ],
+      [
+        "District Collector",
+        "Proceedings before the District Collector, as applicable."
+      ],
+      [
+        "Additional Secretary (Revenue)",
+        "Proceedings before the Additional Secretary (Revenue), Government of Gujarat."
+      ],
+      [
+        "Gujarat Revenue Tribunal",
+        "Proceedings before the Gujarat Revenue Tribunal (GRT) in Ganot and Tenancy matters."
       ]
-    },
-    gu: {
-      title: "મહેસૂલ અને જમીન બાબતો",
-      short: "મ્યુટેશન એન્ટ્રી, RTS, ખેતીની જમીન, શરતો, ગણોત, બિનખેતી પરવાનગી અને મહેસૂલી કાર્યવાહી.",
-      intro: "મ્યુટેશન એન્ટ્રી, RTS વિવાદ, એન્ટ્રી પ્રમાણિત અથવા રદ કરાવવાની કાર્યવાહી, ખેતીની જમીન, જમીનની શરતો, ગણોત, બિનખેતી પરવાનગી તથા લાગુ મહેસૂલ અને જમીન કાયદા હેઠળની બાબતો હાથ ધરવામાં આવી શકે છે.",
-      points: [
-        ["મ્યુટેશન અને RTS", "મ્યુટેશન એન્ટ્રી, પ્રમાણિત કરાવવી અને RTS કાર્યવાહી."],
-        ["ખેતીની જમીન", "ખેતીની જમીન અને શરતો સંબંધિત બાબતો."],
-        ["ગણોત", "યોગ્ય સત્તાધિકારી અથવા ટ્રિબ્યુનલ સમક્ષ ગણોત કાર્યવાહી."],
-        ["મહેસૂલી અપીલ", "સક્ષમ મહેસૂલી સત્તાધિકારી સમક્ષ અપીલ અથવા રિવિઝન."]
-      ]
-    }
+    ]
   },
 
+  gu: {
+    title: "મહેસૂલ, જમીન અને ગણોત બાબતો",
+
+    short:
+      "મહેસૂલી રેકોર્ડ, મ્યુટેશન, RTS, ખેતીની જમીન, જમીનની શરતો, ગણોત, NA permission અને મહેસૂલી સત્તાધિકારીઓ સમક્ષ કાર્યવાહી.",
+
+    intro:
+      "મહેસૂલ, જમીન અને ગણોત સંબંધિત કામગીરીમાં revenue record અને mutation proceedings, RTS appeal અને revision, ખેતીની જમીન અને tenure matters, Ganot/Tenancy proceedings, NA permission અને land-use matters, Mamlatdar and Agricultural Lands Tribunal, Prant Officer અથવા Deputy Collector, District Collector, Additional Secretary (Revenue), Government of Gujarat તથા Ganot/Tenancy બાબતોમાં Gujarat Revenue Tribunal (GRT) સમક્ષની કાર્યવાહીનો સમાવેશ થઈ શકે છે.",
+
+    points: [
+      [
+        "મહેસૂલી રેકોર્ડ અને મ્યુટેશન",
+        "મહેસૂલી રેકોર્ડ અને mutation entry સંબંધિત કાર્યવાહી."
+      ],
+      [
+        "RTS અપીલ અને રિવિઝન",
+        "સક્ષમ મહેસૂલી સત્તાધિકારી સમક્ષ RTS appeal અને revision."
+      ],
+      [
+        "ખેતીની જમીન અને Tenure",
+        "ખેતીની જમીન, જમીનની શરતો અને સંબંધિત મહેસૂલી બાબતો."
+      ],
+      [
+        "ગણોત / Tenancy",
+        "લાગુ ગુજરાત જમીન અને tenancy framework હેઠળ ગણોત અને tenancy proceedings."
+      ],
+      [
+        "NA Permission અને Land Use",
+        "બિનખેતી પરવાનગી અને જમીનના ઉપયોગ સંબંધિત કાર્યવાહી."
+      ],
+      [
+        "Mamlatdar અને ALT",
+        "Mamlatdar and Agricultural Lands Tribunal સમક્ષ કાર્યવાહી."
+      ],
+      [
+        "Prant Officer / Deputy Collector",
+        "Prant Officer અથવા Deputy Collector સમક્ષ કાર્યવાહી."
+      ],
+      [
+        "District Collector",
+        "લાગુ પડે ત્યાં District Collector સમક્ષ કાર્યવાહી."
+      ],
+      [
+        "Additional Secretary (Revenue)",
+        "Additional Secretary (Revenue), Government of Gujarat સમક્ષ કાર્યવાહી."
+      ],
+      [
+        "Gujarat Revenue Tribunal",
+        "Ganot/Tenancy બાબતોમાં Gujarat Revenue Tribunal (GRT) સમક્ષ કાર્યવાહી."
+      ]
+    ]
+  }
+},
   {
     slug: "property-title-registration",
     en: {
