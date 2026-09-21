@@ -705,22 +705,22 @@ function renderFooter() {
 
         </div>
 
-        <div class="footer-bottom">
-          <span>
-            © ${new Date().getFullYear()} B. T. Gadhavi. All rights reserved.
-          </span>
+   <div class="footer-bottom">
 
-          <span>
-            ${isGu
-              ? "વેબસાઇટની માહિતી સામાન્ય સ્વરૂપની છે અને કાનૂની સલાહ નથી."
-              : "Website information is general in nature and does not constitute legal advice."}
-          </span>
-        </div>
+  <span>
+    © ${new Date().getFullYear()} B. T. Gadhavi.
+    All rights reserved.
+  </span>
 
-      </div>
-    </footer>
-  `;
-}
+  <span class="footer-disclaimer">
+
+    ${isGu
+      ? "આ વેબસાઇટ પર આપવામાં આવેલી માહિતી માત્ર સામાન્ય માહિતી માટે છે અને તેને કાનૂની સલાહ માનવી નહીં. ઓફિસનો સંપર્ક કરવાથી આપમેળે વકીલ-મુવક્કિલ સંબંધ સ્થાપિત થતો નથી. કોઈ પણ બાબતની સ્વીકૃતિ હિતસંઘર્ષની તપાસ, અધિકારક્ષેત્ર, દસ્તાવેજોની સમીક્ષા, વ્યાવસાયિક ફી અને ઔપચારિક નિમણૂકને આધીન છે."
+      : "The information provided on this website is for general informational purposes only and does not constitute legal advice. Contacting the office does not automatically create an advocate-client relationship. Acceptance of any matter is subject to conflict checks, jurisdiction, document review, professional fees and formal engagement."}
+
+  </span>
+
+</div>
 
 function heroArt() {
   return `
