@@ -454,30 +454,30 @@ const practiceAreas = [
 const courts = {
   en: [
     "District and Sessions Court, Gandhinagar",
-    "Civil and criminal courts having territorial and subject-matter jurisdiction",
+    "Civil Courts, Gandhinagar",
+    "Criminal Courts, Gandhinagar",
     "Family Court, Gandhinagar",
-    "District Consumer Disputes Redressal Commission",
-    "Gujarat High Court",
+    "District Consumer Disputes Redressal Commission, Gandhinagar",
     "Mamlatdar and Agricultural Lands Tribunal",
-    "Prant Officer / Deputy Collector and District Collector",
-    "Additional Secretary, Revenue Department, Government of Gujarat",
-    "Gujarat Revenue Tribunal",
-    "Gujarat Real Estate Regulatory Authority, where applicable",
-    "Sub-Registrar, stamp and registration authorities"
+    "Prant Officer / Deputy Collector",
+    "District Collector",
+    "Additional Secretary (Revenue), Government of Gujarat",
+    "Gujarat Revenue Tribunal (GRT)",
+    "Gujarat High Court"
   ],
 
   gu: [
     "જિલ્લા અને સેશન્સ કોર્ટ, ગાંધીનગર",
-    "પ્રાદેશિક અને વિષયવસ્તુ આધારિત અધિકાર ધરાવતી સિવિલ તથા ફોજદારી કોર્ટ",
+    "સિવિલ કોર્ટ, ગાંધીનગર",
+    "ફોજદારી કોર્ટ, ગાંધીનગર",
     "ફેમિલી કોર્ટ, ગાંધીનગર",
-    "જિલ્લા ગ્રાહક તકરાર નિવારણ આયોગ",
-    "ગુજરાત હાઈકોર્ટ",
-    "મામલતદાર અને કૃષિ જમીન પંચ",
-    "પ્રાંત અધિકારી / નાયબ કલેક્ટર અને જિલ્લા કલેક્ટર",
-    "અધિક સચિવ, મહેસૂલ વિભાગ, ગુજરાત સરકાર",
-    "ગુજરાત રેવન્યુ ટ્રિબ્યુનલ",
-    "લાગુ પડે ત્યાં ગુજરાત રિયલ એસ્ટેટ રેગ્યુલેટરી ઓથોરિટી",
-    "સબ-રજિસ્ટ્રાર, સ્ટેમ્પ અને નોંધણી સત્તાધિકારી"
+    "જિલ્લા ગ્રાહક તકરાર નિવારણ આયોગ, ગાંધીનગર",
+    "મામલતદાર અને કૃષિ જમીન ટ્રિબ્યુનલ",
+    "પ્રાંત અધિકારી / નાયબ કલેક્ટર",
+    "જિલ્લા કલેક્ટર",
+    "અધિક સચિવ (મહેસૂલ), ગુજરાત સરકાર",
+    "ગુજરાત રેવન્યુ ટ્રિબ્યુનલ (GRT)",
+    "ગુજરાત હાઈકોર્ટ"
   ]
 };
 
