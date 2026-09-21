@@ -1056,32 +1056,79 @@ function renderProfile() {
         <div class="reveal">
 
           <div class="eyebrow">
-            ${isGu ? "વ્યાવસાયિક પરિચય" : "Professional Profile"}
+            ${isGu ? "વ્યાવસાયિક પ્રોફાઇલ" : "Professional Profile"}
           </div>
 
           <h2 class="section-title">
-            ${isGu ? "ભુપતદાન ટી. ગઢવી" : "Bhupatdan T. Gadhavi"}
+            ${isGu
+              ? "ભુપતદાન ટી. ગઢવી"
+              : "Bhupatdan T. Gadhavi"}
           </h2>
 
           <p class="section-copy">
             ${isGu
-              ? "એડવોકેટ અને નોટરી, ગાંધીનગર, ગુજરાત. વર્ષ 2004થી બાર કાઉન્સિલ ઓફ ગુજરાતમાં નોંધાયેલ."
-              : "Advocate and Notary practising in Gandhinagar, Gujarat. Enrolled with the Bar Council of Gujarat since 2004."}
+              ? "એડવોકેટ અને નોટરી. ગાંધીનગર, ગુજરાત ખાતે કાનૂની પ્રેક્ટિસ."
+              : "Advocate & Notary. Legal Practice in Gandhinagar, Gujarat."}
           </p>
 
           <div class="profile-data">
-            ${profileData(isGu ? "લાયકાત" : "Qualification", "B.A., LL.B.")}
-            ${profileData(isGu ? "વકીલાત" : "Practice since", "2004")}
-            ${profileData(isGu ? "નોંધણી" : "Enrollment", "G/81/2004")}
-            ${profileData(isGu ? "હાઈકોર્ટ કોડ" : "High Court Code", "6092")}
-            ${profileData(isGu ? "ભાષાઓ" : "Languages", "Gujarati, Hindi, English")}
-            ${profileData(isGu ? "સ્થળ" : "Location", "Gandhinagar, Gujarat")}
+
+            ${profileData(
+              isGu ? "નામ" : "Name",
+              "Bhupatdan T. Gadhavi"
+            )}
+
+            ${profileData(
+              isGu ? "હોદ્દો" : "Designation",
+              "Advocate & Notary"
+            )}
+
+            ${profileData(
+              isGu ? "લાયકાત" : "Qualification",
+              "B.A., LL.B."
+            )}
+
+            ${profileData(
+              isGu ? "વકીલાત" : "Practising since",
+              "2004"
+            )}
+
+            ${profileData(
+              isGu ? "બાર કાઉન્સિલ નોંધણી" : "Bar Council of Gujarat Enrollment No.",
+              "G/81/2004"
+            )}
+
+            ${profileData(
+              isGu ? "ગુજરાત હાઈકોર્ટ કોડ" : "Gujarat High Court Code",
+              "6092"
+            )}
+
+            ${profileData(
+              isGu ? "ભાષાઓ" : "Languages",
+              "Gujarati, Hindi and English"
+            )}
+
+            ${profileData(
+              isGu ? "કાનૂની પ્રેક્ટિસ" : "Legal Practice",
+              "Gandhinagar, Gujarat"
+            )}
+
           </div>
 
           <div class="btns">
+
             <a class="btn btn-dark" href="${urlForPage("about")}">
-              ${isGu ? "પૂર્ણ પરિચય" : "View Professional Profile"}
+              ${isGu
+                ? "પૂર્ણ પરિચય જુઓ"
+                : "View Professional Profile"}
             </a>
+
+            <a class="btn btn-dark" href="${urlForPage("contact")}">
+              ${isGu
+                ? "મુલાકાત માટે સંપર્ક કરો"
+                : "Request an Appointment"}
+            </a>
+
           </div>
 
         </div>
