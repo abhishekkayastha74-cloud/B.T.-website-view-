@@ -1,6 +1,10 @@
 const lang = document.documentElement.lang.startsWith("gu") ? "gu" : "en";
 const isGu = lang === "gu";
 
+function imagePath(fileName) {
+  return isGu ? `../assets/images/${fileName}` : `assets/images/${fileName}`;
+}
+
 const page = document.body.dataset.page || "home";
 const slug = document.body.dataset.slug || "";
 
@@ -1024,6 +1028,10 @@ function renderHeader() {
       <div class="container header-inner">
 
         <a class="brand" href="${urlForPage("home")}">
+          <span class="brand-logo-wrap">
+            <img class="brand-logo" src="${imagePath("btg-logo.png")}" alt="B T Gadhavi Advocate & Notary Logo" decoding="async">
+          </span>
+          <span class="brand-copy">
 
           <strong>
             B T Gadhavi
@@ -1035,6 +1043,7 @@ function renderHeader() {
               : "Advocate & Notary · Gandhinagar"}
           </small>
 
+          </span>
         </a>
 
         <nav class="nav" id="nav">
@@ -1111,7 +1120,12 @@ function renderFooter() {
 
           <div>
 
-            <div class="footer-brand">
+            <div class="footer-identity">
+              <span class="footer-logo-wrap">
+                <img class="footer-logo" src="${imagePath("btg-logo.png")}" alt="B T Gadhavi Logo" loading="lazy" decoding="async">
+              </span>
+              <div>
+                <div class="footer-brand">
               B T Gadhavi
             </div>
 
@@ -1122,6 +1136,8 @@ function renderFooter() {
                   : "Advocate & Notary<br>Gandhinagar, Gujarat"
               }
             </p>
+              </div>
+            </div>
 
             <p style="opacity:.65">
 
@@ -1269,26 +1285,11 @@ function renderFooter() {
 function heroArt() {
 
   return `
-    <div class="hero-art reveal">
-
-      <div class="court">
-
-        <div class="court-roof"></div>
-
-        <div class="court-beam"></div>
-
-        <div class="columns">
-
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-
-        </div>
-
+    <div class="hero-art advocate-hero reveal">
+      <div class="advocate-hero-frame">
+        <img class="advocate-hero-image" src="${imagePath("advocate-bhupatdan-gadhavi.png")}" alt="Advocate Bhupatdan T. Gadhavi" fetchpriority="high" decoding="async">
+        <div class="advocate-hero-overlay" aria-hidden="true"></div>
       </div>
-
 
       <div class="art-caption">
 
@@ -1916,12 +1917,9 @@ function renderProfile() {
 
       <div class="container profile-grid">
 
-        <div class="profile-art reveal">
-
-          <div class="profile-monogram">
-            BTG
-          </div>
-
+        <div class="profile-art profile-photo-wrap reveal">
+          <img class="profile-photo" src="${imagePath("advocate-bhupatdan-gadhavi.png")}" alt="Bhupatdan T. Gadhavi, Advocate and Notary" loading="lazy" decoding="async">
+          <div class="profile-photo-overlay" aria-hidden="true"></div>
         </div>
 
 
@@ -2273,12 +2271,9 @@ function renderAbout() {
 
       <div class="container profile-grid">
 
-        <div class="profile-art reveal">
-
-          <div class="profile-monogram">
-            BTG
-          </div>
-
+        <div class="profile-art profile-photo-wrap reveal">
+          <img class="profile-photo" src="${imagePath("advocate-bhupatdan-gadhavi.png")}" alt="Bhupatdan T. Gadhavi, Advocate and Notary" loading="lazy" decoding="async">
+          <div class="profile-photo-overlay" aria-hidden="true"></div>
         </div>
 
 
@@ -3909,6 +3904,18 @@ ${f.get("summary")}`
    STRUCTURED DATA
 ========================================================= */
 
+function injectFavicon() {
+  let icon = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
+  if (!icon) {
+    icon = document.createElement("link");
+    icon.rel = "icon";
+    document.head.appendChild(icon);
+  }
+  icon.type = "image/png";
+  icon.removeAttribute("sizes");
+  icon.href = imagePath("btg-logo.png");
+}
+
 function injectSchema() {
 
   const base =
@@ -4072,6 +4079,8 @@ function injectSchema() {
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+
+    injectFavicon();
 
     renderHeader();
 
