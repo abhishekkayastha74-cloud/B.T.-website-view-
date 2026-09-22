@@ -245,7 +245,7 @@ const practiceAreas = [
         "Consumer disputes concerning insurance, banking, housing, goods and services.",
 
       intro:
-        "Consumer complaint, reply, evidence, written argument, execution and appeal work may be undertaken in disputes relating to insurance, banking, housing, defective goods and deficiency in services.",
+        "Consumer complaint, reply, evidence, written arguments, execution and appeal work may be undertaken in disputes relating to insurance, banking, housing, defective goods and deficiency in services.",
 
       points: [
         [
@@ -436,7 +436,7 @@ const practiceAreas = [
         ],
         [
           "Documentation",
-          "Agreements, conveyancing and other property-related documents as engaged."
+          "Agreements, conveyancing and other property-related documents may be prepared or reviewed within the scope of engagement."
         ],
         [
           "Stamp & Registration",
@@ -743,7 +743,7 @@ const practiceAreas = [
         "Notarial acts for affidavits, declarations, copies, execution and other documents where legally permissible.",
 
       intro:
-        "Notarial acts may be undertaken for affidavits, declarations, copies, execution and other documents where legally permissible. The original document, identity, authority and personal-presence requirements may be checked according to the applicable framework.",
+        "Notarial acts may be undertaken for affidavits, declarations, copies, execution and other documents where legally permissible. The original document, identity, authority and personal presence requirements may be checked according to the applicable framework.",
 
       points: [
         [
@@ -3423,7 +3423,7 @@ function renderPrivacy() {
           ${
             isGu
               ? "માહિતીનો ઉપયોગ પૂછપરછનો જવાબ આપવા, પ્રાથમિક હિતસંઘર્ષ અથવા ઉપલબ્ધતા તપાસવા અને મુલાકાત ગોઠવવા માટે થઈ શકે છે."
-              : "Information may be used to respond to enquiries, conduct an initial conflict or availability check and arrange appointments."
+              : "Information may be used to respond to enquiries, conduct an initial conflict and availability check and arrange appointments."
           }
 
         </p>
