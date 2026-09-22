@@ -3414,3 +3414,290 @@ textarea {
   }
 
 }
+
+/* =========================================================
+   OFFICIAL LOGO + ADVOCATE PHOTO
+========================================================= */
+
+/* HEADER LOGO */
+.brand {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-logo-wrap {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.16);
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.34);
+}
+
+.brand-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-copy strong {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.brand-copy small {
+  margin-top: 7px;
+  opacity: .70;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* HOME HERO ADVOCATE PHOTO */
+.advocate-hero {
+  position: relative;
+  min-height: 570px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.advocate-hero::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,145,95,.18), transparent 67%);
+}
+
+.advocate-hero-frame {
+  position: relative;
+  width: min(470px, 100%);
+  height: 570px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--green-950);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 36px 80px rgba(0,0,0,.28);
+}
+
+.advocate-hero-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.advocate-hero-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(6,26,23,.48) 0%, transparent 33%);
+}
+
+.advocate-hero .art-caption {
+  right: -12px;
+  bottom: 42px;
+  z-index: 5;
+}
+
+/* PROFILE / ABOUT PHOTO */
+.profile-art.profile-photo-wrap {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--green-950);
+  box-shadow: 0 26px 65px rgba(6,26,23,.16);
+}
+
+.profile-art.profile-photo-wrap::before,
+.profile-art.profile-photo-wrap::after {
+  display: none;
+}
+
+.profile-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform .5s ease;
+}
+
+.profile-photo-wrap:hover .profile-photo {
+  transform: scale(1.025);
+}
+
+.profile-photo-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(6,26,23,.24), transparent 38%);
+}
+
+/* FOOTER LOGO */
+.footer-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.footer-logo-wrap {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,.16);
+}
+
+.footer-logo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.34);
+}
+
+@media (max-width: 1050px) {
+  .advocate-hero {
+    min-height: 500px;
+  }
+
+  .advocate-hero-frame {
+    width: min(430px, 100%);
+    height: 500px;
+  }
+
+  .profile-art.profile-photo-wrap {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 700px) {
+  .brand {
+    gap: 9px;
+  }
+
+  .brand-logo-wrap {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    border-radius: 6px;
+  }
+
+  .brand-copy strong {
+    font-size: 19px;
+  }
+
+  .brand-copy small {
+    margin-top: 4px;
+    max-width: 165px;
+    font-size: 7px;
+    letter-spacing: .09em;
+  }
+
+  .advocate-hero {
+    min-height: 470px;
+    margin-top: 12px;
+  }
+
+  .advocate-hero-frame {
+    width: 100%;
+    height: 470px;
+    border-radius: 5px;
+  }
+
+  .advocate-hero-image {
+    object-position: center 20%;
+  }
+
+  .advocate-hero .art-caption {
+    right: 12px;
+    bottom: 22px;
+    width: min(205px, calc(100% - 40px));
+    padding: 20px;
+  }
+
+  .advocate-hero .art-caption strong {
+    font-size: 23px;
+  }
+
+  .profile-art.profile-photo-wrap {
+    width: 100%;
+    min-height: 480px;
+    margin-bottom: 5px;
+  }
+
+  .profile-photo {
+    object-position: center 18%;
+  }
+
+  .footer-identity {
+    gap: 13px;
+  }
+
+  .footer-logo-wrap {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-logo-wrap {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .brand-copy strong {
+    font-size: 17px;
+  }
+
+  .brand-copy small {
+    max-width: 140px;
+    font-size: 6px;
+  }
+
+  .advocate-hero-frame {
+    height: 430px;
+  }
+
+  .advocate-hero {
+    min-height: 430px;
+  }
+
+  .profile-art.profile-photo-wrap {
+    min-height: 440px;
+  }
+}
+
