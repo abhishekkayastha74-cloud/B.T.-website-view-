@@ -15,7 +15,7 @@
   --paper-2: #f6f2ea;
 
   --charcoal: #202321;
-  --muted: #6e746f;
+  --muted: #5b625e;
 
   --line: rgba(32, 35, 33, .13);
 
@@ -3701,3 +3701,15 @@ textarea {
   }
 }
 
+/* Legal pages and accessibility: existing responsive rules above are preserved. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #17483f;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff;
+}
+.policy, .enquiry-help, .footer-nav { overflow-wrap: anywhere; }
+.policy a, .consent a, .modal-card p a { text-decoration: underline; text-underline-offset: .18em; }
+.consent { font-size: 13px; line-height: 1.7; align-items: flex-start; }
+.consent input { flex: 0 0 17px; margin-top: 4px; }
+.enquiry-help { color: var(--muted); font-size: 13px; line-height: 1.7; margin-top: 20px; }
+.footer-nav { flex-wrap: wrap; }
