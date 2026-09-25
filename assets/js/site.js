@@ -16,7 +16,9 @@ const files = {
   insights: "insights.html",
   contact: "contact.html",
   disclaimer: "disclaimer.html",
-  privacy: "privacy-policy.html"
+  privacy: "privacy-policy.html",
+  terms: "terms.html",
+  cookies: "cookie-policy.html"
 };
 
 const labels = {
@@ -1072,7 +1074,10 @@ function renderHeader() {
         <button
           class="menu-toggle"
           id="menuToggle"
-          aria-label="Open navigation"
+          type="button"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="${isGu ? "નેવિગેશન ખોલો" : "Open navigation"}"
         >
           ☰
         </button>
@@ -1243,6 +1248,8 @@ function renderFooter() {
               <a href="${urlForPage("privacy")}">
                 ${isGu ? "ગોપનીયતા નીતિ" : "Privacy Policy"}
               </a>
+              <a href="${urlForPage("terms")}">${isGu ? "વેબસાઇટ ઉપયોગની શરતો" : "Terms of Website Use"}</a>
+              <a href="${urlForPage("cookies")}">${isGu ? "કૂકીઝ અને બ્રાઉઝર સ્ટોરેજ" : "Cookies & Browser Storage"}</a>
 
             </div>
 
@@ -3040,13 +3047,15 @@ function renderContact() {
             ${inputField(
               "name",
               isGu ? "પૂર્ણ નામ" : "Full name",
-              "text"
+              "text",
+              true
             )}
 
             ${inputField(
               "phone",
               isGu ? "ટેલિફોન નંબર" : "Telephone number",
-              "tel"
+              "tel",
+              true
             )}
 
             ${inputField(
@@ -3062,8 +3071,8 @@ function renderContact() {
 
                 ${
                   isGu
-                    ? "પસંદની ભાષા"
-                    : "Preferred language"
+                    ? "પસંદની ભાષા (વૈકલ્પિક)"
+                    : "Preferred language (optional)"
                 }
 
               </label>
@@ -3071,7 +3080,6 @@ function renderContact() {
               <select
                 id="language"
                 name="language"
-                required
               >
 
                 <option value="">
@@ -3098,7 +3106,8 @@ function renderContact() {
             ${inputField(
               "matter",
               isGu ? "બાબતનો પ્રકાર" : "Type of matter",
-              "text"
+              "text",
+              true
             )}
 
             ${inputField(
@@ -3144,9 +3153,11 @@ function renderContact() {
 
             <div class="field full">
 
-              <label class="consent">
+              <label class="consent" for="privacyConsent">
 
                 <input
+                  id="privacyConsent"
+                  name="privacyConsent"
                   type="checkbox"
                   required
                 >
@@ -3155,8 +3166,8 @@ function renderContact() {
 
                   ${
                     isGu
-                      ? "હું ગોપનીયતા નીતિ અને સંપર્ક પ્રતિસાદની શરતો સ્વીકારું છું."
-                      : "I consent to the privacy policy and contact response conditions."
+                      ? `મેં <a href="${urlForPage("privacy")}" target="_blank" rel="noopener">ગોપનીયતા નીતિ (નવા ટૅબમાં)</a> વાંચી છે અને આ પૂછપરછનો જવાબ આપવા, પ્રાથમિક હિતસંઘર્ષ તથા ઉપલબ્ધતા તપાસવા અને મુલાકાત ગોઠવવા મારી માહિતીના ઉપયોગ માટે સંમતિ આપું છું.`
+                      : `I have read the <a href="${urlForPage("privacy")}" target="_blank" rel="noopener">Privacy Policy (opens in a new tab)</a> and consent to use of my information to respond to this enquiry, check conflicts and availability, and arrange an appointment.`
                   }
 
                 </span>
@@ -3195,8 +3206,8 @@ function renderContact() {
 
                 ${
                   isGu
-                    ? "મુલાકાત માટે વિનંતી કરો"
-                    : "Request an Appointment"
+                    ? "ઇમેઇલ ડ્રાફ્ટ ખોલો"
+                    : "Open Email Draft"
                 }
 
               </button>
@@ -3205,6 +3216,7 @@ function renderContact() {
 
           </div>
 
+          <p class="enquiry-help">${isGu ? "આ બટન તમારી ઇમેઇલ ઍપમાં ડ્રાફ્ટ ખોલે છે; વેબસાઇટ પોતે પૂછપરછ મોકલતી કે સાચવતી નથી. ડ્રાફ્ટ તપાસીને જાતે મોકલો. ઇમેઇલ ઍપ ન ખૂલે તો btgadhavi78@gmail.com પર સીધો સંપર્ક કરો. નામ, ફોન, બાબતનો પ્રકાર, ટૂંકી માહિતી અને સંમતિ જરૂરી છે; અન્ય ક્ષેત્રો વૈકલ્પિક છે." : "This button opens a draft in your email app. The website does not itself send or save the enquiry. Review and send the draft yourself. If no email app opens, contact btgadhavi78@gmail.com directly. Name, telephone, type of matter, summary and consent are required; other fields are optional."}</p>
         </form>
 
       </div>
@@ -3217,21 +3229,21 @@ function renderContact() {
 }
 
 
-function inputField(id, label, type) {
+function inputField(id, label, type, required = false) {
 
   return `
 
     <div class="field">
 
       <label for="${id}">
-        ${label}
+        ${label}${required ? "" : (isGu ? " (વૈકલ્પિક)" : " (optional)")}
       </label>
 
       <input
         id="${id}"
         name="${id}"
         type="${type}"
-        required
+        ${required ? "required" : ""}
       >
 
     </div>
@@ -3373,96 +3385,245 @@ function renderDisclaimer() {
    PRIVACY
 ========================================================= */
 
-function renderPrivacy() {
+const legalPolicies = {
+  "privacy": {
+    "en": {
+      "title": "Privacy Policy",
+      "intro": "How website enquiries and browser information are handled.",
+      "sections": [
+        [
+          "Who to contact",
+          "This website provides information about B T Gadhavi Advocate &amp; Notary, Gandhinagar, Gujarat. For privacy questions, requests or grievances, contact the office at <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a>."
+        ],
+        [
+          "Information you choose to provide",
+          "The enquiry form requires your name, telephone number, type of matter, a brief non-confidential summary and consent. Email, preferred language, court or authority, case number and hearing date or deadline are optional. Provide only information needed for an initial enquiry."
+        ],
+        [
+          "How the email form works",
+          "The form prepares a mailto draft in your email application. It does not submit the form to a website server or store form entries in website browser storage. You must review and send the email yourself. Your email provider handles the draft and message under its own terms. An email does not confirm receipt, an appointment or acceptance of a matter."
+        ],
+        [
+          "Purpose and choice",
+          "Information sent to the office is used to respond to your enquiry, check conflicts and availability, and arrange an appointment. Any professional engagement is separately agreed. If you do not wish to provide information, you may browse the information pages without submitting an enquiry."
+        ],
+        [
+          "Sensitive and confidential material",
+          "Do not send passwords, banking credentials, identity documents, privileged communications or detailed case documents through an initial enquiry. Ask the office about a suitable channel before sharing confidential material. Contact alone does not create an advocate-client relationship."
+        ],
+        [
+          "Service providers and technical information",
+          "Hosting and email providers may process technical information, such as IP addresses, browser information and access logs, as part of providing their services. The website loads Google Fonts, which makes requests to Google and may disclose your IP address and browser/request information. Provider processing is subject to their own policies. Information may also be disclosed when required by applicable law."
+        ],
+        [
+          "Retention",
+          "Enquiry information should be kept only as long as needed to respond, manage any resulting engagement or meet applicable legal and professional obligations. Ask the office about retention of your particular correspondence. No automatic email deletion period is implemented by this website."
+        ],
+        [
+          "Requests, withdrawal and grievances",
+          "Email <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a> to request access to information you supplied, correction, updating or deletion where applicable, to withdraw consent for further enquiry processing, or to raise a grievance. Describe your request without including unnecessary sensitive documents. Identity verification may be needed. Withdrawal may limit the response the office can provide and does not undo earlier lawful processing. Retention or disclosure required by law may still apply."
+        ],
+        [
+          "Security",
+          "Email and internet communication cannot be guaranteed secure. Limit initial enquiries to non-confidential information and contact the office before sending sensitive material. This website does not provide a secure document-upload facility."
+        ],
+        [
+          "Browser storage and updates",
+          "The site uses <code>btg_ack</code> in localStorage to remember the entry disclaimer acknowledgement. The supplied site code contains no advertising or analytics trackers. See the <a href=\"cookie-policy.html\">Cookies &amp; Browser Storage Policy</a> for details. This notice may be updated when website features or practices change."
+        ]
+      ]
+    },
+    "gu": {
+      "title": "ગોપનીયતા નીતિ",
+      "intro": "વેબસાઇટની પૂછપરછ અને બ્રાઉઝર માહિતીના ઉપયોગ અંગે.",
+      "sections": [
+        [
+          "સંપર્ક",
+          "આ વેબસાઇટ બી ટી ગઢવી એડવોકેટ અને નોટરી, ગાંધીનગર, ગુજરાત વિશે માહિતી આપે છે. ગોપનીયતા અંગે પ્રશ્નો, વિનંતીઓ અથવા ફરિયાદો માટે ઓફિસનો <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a> પર સંપર્ક કરો."
+        ],
+        [
+          "તમે આપતી માહિતી",
+          "પૂછપરછ ફોર્મમાં નામ, ટેલિફોન નંબર, બાબતનો પ્રકાર, ટૂંકી બિન-ગુપ્ત માહિતી અને સંમતિ જરૂરી છે. ઇમેઇલ, પસંદની ભાષા, કોર્ટ અથવા સત્તાધિકારી, કેસ નંબર અને સુનાવણીની તારીખ અથવા સમયમર્યાદા વૈકલ્પિક છે. પ્રાથમિક પૂછપરછ માટે જરૂરી માહિતી જ આપો."
+        ],
+        [
+          "ઇમેઇલ ફોર્મ કેવી રીતે કામ કરે છે",
+          "ફોર્મ તમારી ઇમેઇલ ઍપમાં mailto ડ્રાફ્ટ તૈયાર કરે છે. તે વેબસાઇટ સર્વરને ફોર્મ મોકલતું નથી કે ફોર્મની વિગતો વેબસાઇટના બ્રાઉઝર સ્ટોરેજમાં સાચવતું નથી. ઇમેઇલ તમે જાતે તપાસીને મોકલવાનો છે. તમારી ઇમેઇલ સેવા પોતાની શરતો મુજબ ડ્રાફ્ટ અને સંદેશ સંભાળે છે. ઇમેઇલથી પ્રાપ્તિ, મુલાકાત અથવા બાબતની સ્વીકૃતિની પુષ્ટિ થતી નથી."
+        ],
+        [
+          "હેતુ અને પસંદગી",
+          "ઓફિસને મોકલેલી માહિતીનો ઉપયોગ પૂછપરછનો જવાબ આપવા, હિતસંઘર્ષ અને ઉપલબ્ધતા તપાસવા તથા મુલાકાત ગોઠવવા થાય છે. વ્યાવસાયિક નિમણૂક માટે અલગ સંમતિ જરૂરી છે. માહિતી આપવા ન ઇચ્છતા હો તો પૂછપરછ મોકલ્યા વગર માહિતીવાળા પાનાં જોઈ શકો છો."
+        ],
+        [
+          "સંવેદનશીલ અને ગુપ્ત માહિતી",
+          "પ્રાથમિક પૂછપરછમાં પાસવર્ડ, બેંકિંગ ઓળખ, ઓળખપત્રો, વિશેષાધિકાર ધરાવતો પત્રવ્યવહાર અથવા કેસના વિગતવાર દસ્તાવેજો મોકલશો નહીં. ગુપ્ત માહિતી આપતા પહેલાં યોગ્ય માધ્યમ વિશે ઓફિસને પૂછો. માત્ર સંપર્ક કરવાથી વકીલ-મુવક્કિલ સંબંધ બનતો નથી."
+        ],
+        [
+          "સેવા પ્રદાતાઓ અને ટેક્નિકલ માહિતી",
+          "હોસ્ટિંગ અને ઇમેઇલ સેવા પ્રદાતાઓ સેવા આપવા માટે IP સરનામું, બ્રાઉઝરની માહિતી અને ઍક્સેસ લૉગ જેવી ટેક્નિકલ માહિતી પ્રક્રિયા કરી શકે છે. વેબસાઇટ Google Fonts લોડ કરે છે, તેથી Googleને વિનંતીઓ જાય છે અને તમારું IP સરનામું તથા બ્રાઉઝર/વિનંતીની માહિતી મળી શકે છે. સેવા પ્રદાતાઓની પ્રક્રિયા તેમની પોતાની નીતિઓને આધીન છે. લાગુ કાયદા મુજબ જરૂરી હોય ત્યારે માહિતી જાહેર પણ કરવી પડી શકે છે."
+        ],
+        [
+          "માહિતી જાળવણી",
+          "પૂછપરછનો જવાબ આપવા, અનુગામી નિમણૂક સંભાળવા અથવા લાગુ કાનૂની અને વ્યાવસાયિક ફરજો માટે જરૂરી હોય તેટલા સમય સુધી જ માહિતી રાખવી જોઈએ. તમારા પત્રવ્યવહારની જાળવણી વિશે ઓફિસને પૂછો. આ વેબસાઇટ ઇમેઇલ આપમેળે કાઢી નાખવાની કોઈ સમયમર્યાદા અમલમાં મૂકતી નથી."
+        ],
+        [
+          "વિનંતીઓ, સંમતિ પાછી ખેંચવી અને ફરિયાદો",
+          "તમે આપેલી માહિતી મેળવવા, સુધારવા, અપડેટ કરવા અથવા લાગુ પડતું હોય ત્યાં કાઢી નાખવા, આગળની પૂછપરછ પ્રક્રિયા માટે સંમતિ પાછી ખેંચવા કે ફરિયાદ કરવા <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a> પર લખો. બિનજરૂરી સંવેદનશીલ દસ્તાવેજો વગર વિનંતી સમજાવો. ઓળખની ચકાસણી જરૂરી બની શકે છે. સંમતિ પાછી ખેંચવાથી ઓફિસનો પ્રતિસાદ મર્યાદિત થઈ શકે છે અને અગાઉની કાયદેસર પ્રક્રિયા રદ થતી નથી. કાયદા મુજબ જરૂરી જાળવણી અથવા જાહેર કરવાની ફરજ લાગુ રહી શકે છે."
+        ],
+        [
+          "સુરક્ષા",
+          "ઇમેઇલ અને ઇન્ટરનેટ સંચાર સંપૂર્ણ સુરક્ષિત હોવાની ખાતરી આપી શકાતી નથી. પ્રાથમિક પૂછપરછમાં બિન-ગુપ્ત માહિતી જ આપો અને સંવેદનશીલ માહિતી મોકલતા પહેલાં ઓફિસનો સંપર્ક કરો. આ વેબસાઇટ સુરક્ષિત દસ્તાવેજ અપલોડ સુવિધા આપતી નથી."
+        ],
+        [
+          "બ્રાઉઝર સ્ટોરેજ અને ફેરફારો",
+          "પ્રવેશ ડિસ્ક્લેમરની સ્વીકૃતિ યાદ રાખવા સાઇટ localStorageમાં <code>btg_ack</code> વાપરે છે. પૂરા પાડેલા સાઇટ કોડમાં જાહેરાત અથવા એનાલિટિક્સ ટ્રૅકર નથી. વિગતો માટે <a href=\"cookie-policy.html\">કૂકીઝ અને બ્રાઉઝર સ્ટોરેજ નીતિ</a> જુઓ. વેબસાઇટની સુવિધાઓ અથવા પદ્ધતિઓ બદલાય ત્યારે આ સૂચના સુધારવામાં આવી શકે છે."
+        ]
+      ]
+    }
+  },
+  "terms": {
+    "en": {
+      "title": "Terms of Website Use",
+      "intro": "Conditions for using this information website.",
+      "sections": [
+        [
+          "General information only",
+          "This website provides general information about the practice and legal topics. It is not legal advice or a substitute for advice on the facts of a particular matter. Laws and procedures can change. Do not rely on this website to calculate or meet a legal deadline."
+        ],
+        [
+          "No automatic professional engagement",
+          "Browsing, acknowledging the disclaimer or sending an enquiry does not create an advocate-client relationship. Acceptance requires conflict and availability checks, review of the matter and a separately confirmed professional engagement. Do not send confidential documents until the office confirms an appropriate arrangement."
+        ],
+        [
+          "No assurance of results",
+          "No result, timeline or outcome is guaranteed. Information on practice areas or professional experience is not a prediction of the outcome of any matter."
+        ],
+        [
+          "Responsible use",
+          "Use the website lawfully. Do not submit false or unlawful material, impersonate others, interfere with the website or attempt unauthorised access."
+        ],
+        [
+          "Website materials",
+          "Original text, design, logos and other materials are subject to applicable intellectual property rights. Reuse requires permission unless allowed by law. Third-party materials remain subject to their respective rights and licences."
+        ],
+        [
+          "External services and availability",
+          "External websites and services have their own terms and privacy practices. Links do not guarantee their accuracy or availability. This website may be unavailable or contain errors; contact the office to confirm information relevant to your matter."
+        ],
+        [
+          "Fees and appointments",
+          "This website does not take online payments or confirm appointments automatically. Any professional fees, scope of work and cancellation arrangements are agreed separately with the office."
+        ],
+        [
+          "Applicable law and contact",
+          "Website use is subject to applicable Indian law. Nothing here excludes rights or liabilities that cannot lawfully be excluded. For questions contact <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a>. Also read the <a href=\"privacy-policy.html\">Privacy Policy</a> and <a href=\"disclaimer.html\">Disclaimer</a>."
+        ]
+      ]
+    },
+    "gu": {
+      "title": "વેબસાઇટ ઉપયોગની શરતો",
+      "intro": "આ માહિતીપ્રદ વેબસાઇટના ઉપયોગની શરતો.",
+      "sections": [
+        [
+          "માત્ર સામાન્ય માહિતી",
+          "આ વેબસાઇટ પ્રેક્ટિસ અને કાનૂની વિષયો વિશે સામાન્ય માહિતી આપે છે. તે કાનૂની સલાહ નથી અને ચોક્કસ બાબતના તથ્યો પરની સલાહનો વિકલ્પ નથી. કાયદા અને પ્રક્રિયાઓ બદલાઈ શકે છે. કાનૂની સમયમર્યાદા ગણવા કે પાળવા આ વેબસાઇટ પર આધાર રાખશો નહીં."
+        ],
+        [
+          "આપમેળે વ્યાવસાયિક નિમણૂક થતી નથી",
+          "વેબસાઇટ જોવાથી, ડિસ્ક્લેમર સ્વીકારવાથી કે પૂછપરછ મોકલવાથી વકીલ-મુવક્કિલ સંબંધ બનતો નથી. સ્વીકૃતિ માટે હિતસંઘર્ષ અને ઉપલબ્ધતાની તપાસ, બાબતની સમીક્ષા અને અલગથી પુષ્ટિ કરેલી વ્યાવસાયિક નિમણૂક જરૂરી છે. ઓફિસ યોગ્ય વ્યવસ્થાની પુષ્ટિ કરે ત્યાં સુધી ગુપ્ત દસ્તાવેજો મોકલશો નહીં."
+        ],
+        [
+          "પરિણામની ખાતરી નથી",
+          "કોઈ પરિણામ, સમયગાળો કે બાબતના નિષ્કર્ષની ખાતરી આપવામાં આવતી નથી. કાર્યક્ષેત્ર અથવા વ્યાવસાયિક અનુભવની માહિતી કોઈ બાબતના પરિણામની આગાહી નથી."
+        ],
+        [
+          "જવાબદાર ઉપયોગ",
+          "વેબસાઇટનો કાયદેસર ઉપયોગ કરો. ખોટી અથવા ગેરકાયદેસર સામગ્રી મોકલશો નહીં, બીજાની ઓળખ ધારણ કરશો નહીં, વેબસાઇટમાં વિક્ષેપ પાડશો નહીં કે અનધિકૃત પ્રવેશનો પ્રયાસ કરશો નહીં."
+        ],
+        [
+          "વેબસાઇટની સામગ્રી",
+          "મૂળ લખાણ, ડિઝાઇન, લોગો અને અન્ય સામગ્રી લાગુ બૌદ્ધિક સંપત્તિના અધિકારોને આધીન છે. કાયદા હેઠળ મંજૂરી ન હોય તો પુનઃઉપયોગ માટે પરવાનગી જરૂરી છે. તૃતીય પક્ષની સામગ્રી તેમના અધિકારો અને લાઇસન્સને આધીન રહે છે."
+        ],
+        [
+          "બાહ્ય સેવાઓ અને ઉપલબ્ધતા",
+          "બાહ્ય વેબસાઇટો અને સેવાઓની પોતાની શરતો અને ગોપનીયતા પદ્ધતિઓ હોય છે. લિંક તેમની ચોકસાઈ કે ઉપલબ્ધતાની ખાતરી નથી. આ વેબસાઇટ ઉપલબ્ધ ન હોય અથવા તેમાં ભૂલો હોય શકે છે; તમારી બાબતને લગતી માહિતીની પુષ્ટિ માટે ઓફિસનો સંપર્ક કરો."
+        ],
+        [
+          "ફી અને મુલાકાત",
+          "આ વેબસાઇટ ઑનલાઇન ચુકવણી લેતી નથી કે મુલાકાતની આપમેળે પુષ્ટિ કરતી નથી. વ્યાવસાયિક ફી, કામનો વ્યાપ અને રદ કરવાની વ્યવસ્થા ઓફિસ સાથે અલગથી નક્કી થાય છે."
+        ],
+        [
+          "લાગુ કાયદો અને સંપર્ક",
+          "વેબસાઇટનો ઉપયોગ લાગુ ભારતીય કાયદાને આધીન છે. કાયદેસર રીતે દૂર ન કરી શકાય એવા અધિકારો કે જવાબદારીઓને અહીં દૂર કરવામાં આવતાં નથી. પ્રશ્નો માટે <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a> પર સંપર્ક કરો. <a href=\"privacy-policy.html\">ગોપનીયતા નીતિ</a> અને <a href=\"disclaimer.html\">ડિસ્ક્લેમર</a> પણ વાંચો."
+        ]
+      ]
+    }
+  },
+  "cookies": {
+    "en": {
+      "title": "Cookies & Browser Storage",
+      "intro": "What this website remembers in your browser.",
+      "sections": [
+        [
+          "Cookies and localStorage",
+          "Cookies and localStorage are different browser technologies. The supplied website code does not set cookies or include advertising or analytics trackers. It uses localStorage for the entry disclaimer acknowledgement. Hosting providers may separately process request logs; this notice does not describe an audit of their systems."
+        ],
+        [
+          "The btg_ack entry",
+          "Name: <code>btg_ack</code>. Value: <code>1</code>. Purpose: remember that you acknowledged the website entry disclaimer. Location: localStorage for the current website origin in this browser. It contains no enquiry fields and is not analytics or marketing consent. No automatic expiry is set; it remains until site data is cleared or the browser removes it. A different browser, device or domain may show the disclaimer again."
+        ],
+        [
+          "Control and clearing",
+          "You can block or clear site data in your browser settings. Clearing this entry resets the acknowledgement and the disclaimer may appear again. If storage is unavailable, you can still continue, but the acknowledgement will not be remembered after navigation or reload. The legal information pages remain readable without accepting the entry disclaimer."
+        ],
+        [
+          "Google Fonts and email",
+          "Styles load fonts from Google Fonts. This causes external requests and may share your IP address and browser/request information with Google even though this site has no analytics tracker. The enquiry form opens your email app; it does not save form values in localStorage. See the <a href=\"privacy-policy.html\">Privacy Policy</a>."
+        ],
+        [
+          "Future changes and questions",
+          "If optional tracking features are added, this notice and any applicable choice controls must be updated before those features are enabled. For questions about current browser storage, contact <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a>."
+        ]
+      ]
+    },
+    "gu": {
+      "title": "કૂકીઝ અને બ્રાઉઝર સ્ટોરેજ",
+      "intro": "આ વેબસાઇટ તમારા બ્રાઉઝરમાં શું યાદ રાખે છે.",
+      "sections": [
+        [
+          "કૂકીઝ અને localStorage",
+          "કૂકીઝ અને localStorage બ્રાઉઝરની અલગ તકનીકો છે. પૂરા પાડેલો વેબસાઇટ કોડ કૂકીઝ સેટ કરતો નથી અને તેમાં જાહેરાત કે એનાલિટિક્સ ટ્રૅકર નથી. તે પ્રવેશ ડિસ્ક્લેમરની સ્વીકૃતિ માટે localStorage વાપરે છે. હોસ્ટિંગ પ્રદાતાઓ અલગથી વિનંતીના લૉગ પ્રક્રિયા કરી શકે છે; આ સૂચના તેમની સિસ્ટમોના ઑડિટનું વર્ણન નથી."
+        ],
+        [
+          "btg_ack એન્ટ્રી",
+          "નામ: <code>btg_ack</code>. મૂલ્ય: <code>1</code>. હેતુ: તમે પ્રવેશ ડિસ્ક્લેમર સ્વીકાર્યો તે યાદ રાખવો. સ્થાન: આ બ્રાઉઝરમાં વર્તમાન વેબસાઇટ ઓરિજિનનું localStorage. તેમાં પૂછપરછની વિગતો નથી અને તે એનાલિટિક્સ કે માર્કેટિંગ માટેની સંમતિ નથી. આપમેળે સમાપ્તિનો સમય સેટ કરેલો નથી; સાઇટ ડેટા સાફ થાય અથવા બ્રાઉઝર દૂર કરે ત્યાં સુધી રહે છે. બીજા બ્રાઉઝર, ઉપકરણ કે ડોમેન પર ડિસ્ક્લેમર ફરી દેખાઈ શકે છે."
+        ],
+        [
+          "નિયંત્રણ અને સાફ કરવું",
+          "બ્રાઉઝર સેટિંગ્સમાં સાઇટ ડેટા અટકાવી કે સાફ કરી શકો છો. આ એન્ટ્રી કાઢવાથી સ્વીકૃતિ રીસેટ થાય છે અને ડિસ્ક્લેમર ફરી દેખાઈ શકે છે. સ્ટોરેજ ઉપલબ્ધ ન હોય તો પણ આગળ વધી શકો છો, પરંતુ બીજા પાનાં પર જતાં કે રીલોડ કરતાં સ્વીકૃતિ યાદ રહેશે નહીં. પ્રવેશ ડિસ્ક્લેમર સ્વીકાર્યા વગર પણ કાનૂની માહિતીવાળા પાનાં વાંચી શકાય છે."
+        ],
+        [
+          "Google Fonts અને ઇમેઇલ",
+          "સ્ટાઇલ્સ Google Fonts પરથી ફોન્ટ લોડ કરે છે. તેથી બાહ્ય વિનંતીઓ થાય છે અને સાઇટમાં એનાલિટિક્સ ટ્રૅકર ન હોવા છતાં તમારું IP સરનામું તથા બ્રાઉઝર/વિનંતીની માહિતી Googleને મળી શકે છે. પૂછપરછ ફોર્મ તમારી ઇમેઇલ ઍપ ખોલે છે; ફોર્મની વિગતો localStorageમાં સાચવતું નથી. <a href=\"privacy-policy.html\">ગોપનીયતા નીતિ</a> જુઓ."
+        ],
+        [
+          "ભવિષ્યના ફેરફારો અને પ્રશ્નો",
+          "વૈકલ્પિક ટ્રૅકિંગ સુવિધાઓ ઉમેરાય તો તેને ચાલુ કરતાં પહેલાં આ સૂચના અને લાગુ પડતાં પસંદગીના નિયંત્રણો સુધારવા જરૂરી છે. વર્તમાન બ્રાઉઝર સ્ટોરેજ વિશે પ્રશ્નો માટે <a href=\"mailto:btgadhavi78@gmail.com\">btgadhavi78@gmail.com</a> પર સંપર્ક કરો."
+        ]
+      ]
+    }
+  }
+};
 
-  return `
-
-    ${pageHero(
-      isGu
-        ? "ગોપનીયતા નીતિ"
-        : "Privacy Policy",
-
-      isGu
-        ? "વેબસાઇટ દ્વારા આપવામાં આવતી વ્યક્તિગત માહિતીના ઉપયોગ અંગે."
-        : "Information about how information submitted through this website may be handled."
-    )}
-
-
-    <section class="section">
-
-      <div class="container policy">
-
-        <h2>
-          ${
-            isGu
-              ? "એકત્ર થતી માહિતી"
-              : "Information That May Be Collected"
-          }
-        </h2>
-
-        <p>
-
-          ${
-            isGu
-              ? "નામ, સંપર્ક વિગતો, પસંદની ભાષા, બાબતનો પ્રકાર અને ટૂંકી માહિતી જેવી વિગતો સ્વૈચ્છિક રીતે આપવામાં આવી શકે છે."
-              : "Information voluntarily provided may include name, contact details, preferred language, matter category and a brief message."
-          }
-
-        </p>
-
-        <h2>
-          ${
-            isGu
-              ? "માહિતીનો ઉપયોગ"
-              : "Use of Information"
-          }
-        </h2>
-
-        <p>
-
-          ${
-            isGu
-              ? "માહિતીનો ઉપયોગ પૂછપરછનો જવાબ આપવા, પ્રાથમિક હિતસંઘર્ષ અથવા ઉપલબ્ધતા તપાસવા અને મુલાકાત ગોઠવવા માટે થઈ શકે છે."
-              : "Information may be used to respond to enquiries, conduct an initial conflict and availability check and arrange appointments."
-          }
-
-        </p>
-
-        <h2>
-          ${
-            isGu
-              ? "સંવેદનશીલ માહિતી"
-              : "Sensitive Information"
-          }
-        </h2>
-
-        <p>
-
-          ${
-            isGu
-              ? "સામાન્ય વેબ ફોર્મ દ્વારા મૂળ દસ્તાવેજો, પાસવર્ડ, બેંકિંગ ઓળખ અથવા અત્યંત સંવેદનશીલ માહિતી મોકલશો નહીં."
-              : "Do not submit original documents, passwords, banking credentials, privileged communications or highly sensitive information through the general enquiry form."
-          }
-
-        </p>
-
-        <h2>
-          ${isGu ? "સંપર્ક" : "Privacy Contact"}
-        </h2>
-
-        <p>
-          btgadhavi78@gmail.com
-        </p>
-
-      </div>
-
-    </section>
-
-
-    ${renderCTA()}
-  `;
+function renderLegalPolicy(key) {
+  const p = legalPolicies[key][lang];
+  return `${pageHero(p.title, p.intro)}<section class="section"><div class="container policy">
+    <p>${isGu ? "છેલ્લો સુધારો: 25 સપ્ટેમ્બર 2026" : "Last updated: 25 September 2026"}</p>
+    ${p.sections.map(([heading, copy]) => `<h2>${heading}</h2><p>${copy}</p>`).join("")}
+    </div></section>${renderCTA()}`;
 }
-
+function renderPrivacy() { return renderLegalPolicy("privacy"); }
+function renderTerms() { return renderLegalPolicy("terms"); }
+function renderCookies() { return renderLegalPolicy("cookies"); }
 
 /* =========================================================
    GLOBAL CTA
@@ -3583,7 +3744,9 @@ function renderPage() {
       renderDisclaimer,
 
     privacy:
-      renderPrivacy
+      renderPrivacy,
+    terms: renderTerms,
+    cookies: renderCookies
 
   };
 
@@ -3600,11 +3763,10 @@ function renderPage() {
 
 function renderEntryDisclaimer() {
 
-  if (
-    localStorage.getItem("btg_ack") === "1"
-  ) {
-    return;
-  }
+  if (["privacy", "terms", "cookies", "disclaimer"].includes(page)) return;
+  try {
+    if (localStorage.getItem("btg_ack") === "1") return;
+  } catch (_) { /* Storage may be blocked; allow this visit to continue. */ }
 
   const modal =
     document.createElement("div");
@@ -3615,7 +3777,7 @@ function renderEntryDisclaimer() {
 
   modal.innerHTML = `
 
-    <div class="modal-card">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="entryDisclaimerTitle">
 
       <div class="eyebrow">
 
@@ -3627,7 +3789,7 @@ function renderEntryDisclaimer() {
 
       </div>
 
-      <h2>
+      <h2 id="entryDisclaimerTitle">
 
         ${
           isGu
@@ -3668,6 +3830,7 @@ function renderEntryDisclaimer() {
       </p>
 
 
+      <p><a href="${urlForPage("privacy")}">${isGu ? "ગોપનીયતા નીતિ" : "Privacy Policy"}</a> · <a href="${urlForPage("terms")}">${isGu ? "ઉપયોગની શરતો" : "Terms"}</a> · <a href="${urlForPage("cookies")}">${isGu ? "બ્રાઉઝર સ્ટોરેજ" : "Browser Storage"}</a></p>
       <div class="modal-actions">
 
         <button
@@ -3704,19 +3867,34 @@ function renderEntryDisclaimer() {
   `;
 
 
+  const previousFocus = document.activeElement;
+  const background = Array.from(document.body.children).filter(el => el.tagName !== "SCRIPT");
+  const inertStates = background.map(el => [el, el.inert]);
+  const previousOverflow = document.body.style.overflow;
+  background.forEach(el => { el.inert = true; });
+  document.body.style.overflow = "hidden";
   document.body.appendChild(modal);
+  const focusables = Array.from(modal.querySelectorAll("a[href], button"));
+  modal.addEventListener("keydown", event => {
+    if (event.key === "Tab") {
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+  });
+  document.getElementById("acceptDisclaimer").focus();
 
 
   document
     .getElementById("acceptDisclaimer")
     .onclick = () => {
 
-      localStorage.setItem(
-        "btg_ack",
-        "1"
-      );
-
+      try { localStorage.setItem("btg_ack", "1"); } catch (_) { /* Continue without persistence. */ }
       modal.remove();
+      inertStates.forEach(([el, state]) => { el.inert = state; });
+      document.body.style.overflow = previousOverflow;
+      if (previousFocus && previousFocus !== document.body) previousFocus.focus();
+      else document.querySelector(".brand")?.focus();
 
     };
 
@@ -3737,50 +3915,26 @@ function renderEntryDisclaimer() {
 ========================================================= */
 
 function setupHeader() {
-
-  const header =
-    document.getElementById("header");
-
-  const toggle =
-    document.getElementById("menuToggle");
-
-  const nav =
-    document.getElementById("nav");
-
-
-  window.addEventListener(
-    "scroll",
-    () => {
-
-      header.classList.toggle(
-        "scrolled",
-        window.scrollY > 20
-      );
-
-    }
-  );
-
-
-  toggle?.addEventListener(
-    "click",
-    () => {
-
-      nav.classList.toggle("open");
-
-    }
-  );
-
-
-  nav
-    ?.querySelectorAll("a")
-    .forEach(a => {
-
-      a.onclick =
-        () => nav.classList.remove("open");
-
-    });
+  const header = document.getElementById("header");
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.getElementById("nav");
+  const mobile = window.matchMedia("(max-width: 1050px)");
+  const sync = () => {
+    const open = nav.classList.contains("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", isGu ? (open ? "નેવિગેશન બંધ કરો" : "નેવિગેશન ખોલો") : (open ? "Close navigation" : "Open navigation"));
+    nav.inert = mobile.matches && !open;
+  };
+  const close = () => { nav.classList.remove("open"); sync(); };
+  window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 20), {passive: true});
+  toggle.addEventListener("click", () => { nav.classList.toggle("open"); sync(); });
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && nav.classList.contains("open")) { close(); toggle.focus(); }
+  });
+  mobile.addEventListener("change", close);
+  sync();
 }
-
 
 /* =========================================================
    SCROLL REVEAL
@@ -3861,7 +4015,7 @@ function setupContactForm() {
     e => {
 
       e.preventDefault();
-
+      if (!form.reportValidity()) return;
 
       const f =
         new FormData(form);
@@ -3888,7 +4042,10 @@ Case number: ${f.get("case")}
 Next hearing / deadline: ${f.get("deadline")}
 
 Brief non-confidential summary:
-${f.get("summary")}`
+${f.get("summary")}
+
+Privacy consent: given for enquiry response, conflict/availability checks and appointment arrangements.
+Privacy notice version: 25 September 2026`
         );
 
 
@@ -3918,8 +4075,10 @@ function injectFavicon() {
 
 function injectSchema() {
 
-  const base =
-    "https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/";
+  // Current served directory, including any project subpath and language.
+  // This is not a declaration of the final canonical domain.
+  if (!/^https?:$/.test(window.location.protocol)) return;
+  const base = new URL("./", window.location.href).href;
 
 
   let schema;
