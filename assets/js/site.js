@@ -2683,7 +2683,7 @@ function renderPracticeDetail() {
 
         <div class="detail-points">
 
-          ${x.points
+          {x.points
             .map(
               p => `
 
@@ -4287,7 +4287,7 @@ document.addEventListener("keydown", function (event) {
     return false;
   }
 
-  // Ctrl + Shift + I
+  // Ctrl + Shift + Img / etc
   if (
     event.ctrlKey &&
     event.shiftKey &&
