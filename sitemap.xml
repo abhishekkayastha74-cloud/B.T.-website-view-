@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/about.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/practice-areas.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/courts-forums.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/insights.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/contact.html</loc></url>
+  <!-- English Pages -->
+  <url><loc>https://btgadhavi.com/</loc></url>
+  <url><loc>https://btgadhavi.com/about.html</loc></url>
+  <url><loc>https://btgadhavi.com/practice-areas.html</loc></url>
+  <url><loc>https://btgadhavi.com/courts-forums.html</loc></url>
+  <url><loc>https://btgadhavi.com/insights.html</loc></url>
+  <url><loc>https://btgadhavi.com/contact.html</loc></url>
 
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/civil-commercial.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/criminal-law.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/family-law.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/consumer-law.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/revenue-land.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/property-title-registration.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/banking-finance.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/insurance-mact.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/business-contracts.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/notarial-services.html</loc></url>
+  <url><loc>https://btgadhavi.com/civil-commercial.html</loc></url>
+  <url><loc>https://btgadhavi.com/criminal-law.html</loc></url>
+  <url><loc>https://btgadhavi.com/family-law.html</loc></url>
+  <url><loc>https://btgadhavi.com/consumer-law.html</loc></url>
+  <url><loc>https://btgadhavi.com/revenue-land.html</loc></url>
+  <url><loc>https://btgadhavi.com/property-title-registration.html</loc></url>
+  <url><loc>https://btgadhavi.com/banking-finance.html</loc></url>
+  <url><loc>https://btgadhavi.com/insurance-mact.html</loc></url>
+  <url><loc>https://btgadhavi.com/business-contracts.html</loc></url>
+  <url><loc>https://btgadhavi.com/notarial-services.html</loc></url>
+  <url><loc>https://btgadhavi.com/disclaimer.html</loc></url>
+  <url><loc>https://btgadhavi.com/privacy-policy.html</loc></url>
 
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/about.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/practice-areas.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/courts-forums.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/insights.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/contact.html</loc></url>
+  <!-- Gujarati Pages -->
+  <url><loc>https://btgadhavi.com/gu/</loc></url>
+  <url><loc>https://btgadhavi.com/gu/about.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/practice-areas.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/courts-forums.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/insights.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/contact.html</loc></url>
 
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/civil-commercial.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/criminal-law.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/family-law.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/consumer-law.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/revenue-land.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/property-title-registration.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/banking-finance.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/insurance-mact.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/business-contracts.html</loc></url>
-<url><loc>https://abhishekkayastha74-cloud.github.io/B.T.-website-view-/gu/notarial-services.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/civil-commercial.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/criminal-law.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/family-law.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/consumer-law.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/revenue-land.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/property-title-registration.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/banking-finance.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/insurance-mact.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/business-contracts.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/notarial-services.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/disclaimer.html</loc></url>
+  <url><loc>https://btgadhavi.com/gu/privacy-policy.html</loc></url>
 
 </urlset>
