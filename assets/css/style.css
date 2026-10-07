@@ -3701,7 +3701,6 @@ textarea {
   }
 }
 
-/* Legal pages and accessibility: existing responsive rules above are preserved. */
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid #17483f;
   outline-offset: 3px;
